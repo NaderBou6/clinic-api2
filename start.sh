@@ -1,16 +1,17 @@
 #!/bin/sh
 set -e
 
-# إذا APP_KEY غير موجود، توليد واحد (مرة)
-if [ -z "$APP_KEY" ]; then
-  echo "APP_KEY is empty. Generating..."
+# إنشاء .env إذا لم يوجد
+if [ ! -f .env ]; then
+  cp .env.example .env
+fi
+
+# تأكد من وجود APP_KEY
+if ! grep -q "^APP_KEY=" .env || [ -z "$(grep '^APP_KEY=' .env | cut -d= -f2)" ]; then
   php artisan key:generate --force
 fi
 
-# Cache (اختياري لكن مفيد)
-php artisan config:cache || true
-php artisan route:cache || true
-php artisan view:cache || true
+php artisan config:clear
+php artisan cache:clear
 
-# ملاحظة: migrations نخليها manual أول مرة لتفادي مشاكل DB غير جاهزة
 exec apache2-foreground
