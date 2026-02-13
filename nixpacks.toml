@@ -1,3 +1,6 @@
+[phases.setup]
+nixPkgs = ["php82", "php82Extensions.pdo_mysql", "nodejs_20", "composer"]
+
 [phases.install]
 cmds = [
   "composer install --no-dev --optimize-autoloader",
@@ -11,4 +14,3 @@ cmds = [
 
 [start]
 cmd = "php -S 0.0.0.0:$PORT -t public"
-
