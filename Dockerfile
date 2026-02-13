@@ -6,7 +6,9 @@ RUN apt-get update && apt-get install -y \
     git unzip curl libzip-dev libpng-dev libonig-dev libicu-dev \
     && docker-php-ext-install pdo_mysql zip intl \
     && a2enmod rewrite \
+    && a2dismod mpm_event mpm_worker && a2enmod mpm_prefork \
     && rm -rf /var/lib/apt/lists/*
+
 
 # 3) Set Apache docroot to Laravel /public
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
