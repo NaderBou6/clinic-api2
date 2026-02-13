@@ -8,8 +8,13 @@ RUN apt-get update && apt-get install -y \
     && a2enmod rewrite \
     && a2dismod mpm_event mpm_worker || true \
     && a2enmod mpm_prefork \
-    && rm -f /etc/apache2/mods-enabled/mpm_event.load /etc/apache2/mods-enabled/mpm_worker.load 2>/dev/null || true \
+    # 🔥 حذف أي تحميل يدوي للـ MPM من الكونفيغ
+    && sed -i '/mpm_event_module/d' /etc/apache2/apache2.conf \
+    && sed -i '/mpm_worker_module/d' /etc/apache2/apache2.conf \
+    && rm -f /etc/apache2/mods-enabled/mpm_event.load \
+    && rm -f /etc/apache2/mods-enabled/mpm_worker.load \
     && rm -rf /var/lib/apt/lists/*
+*
 
 
 
