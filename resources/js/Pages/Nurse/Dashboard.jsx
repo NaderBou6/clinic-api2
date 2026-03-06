@@ -131,14 +131,14 @@ export default function NurseDashboard() {
 
   return (
     <Container sx={{ py: 4 }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
+      <Stack direction={{ xs: "column", sm: "row" }} justifyContent="space-between" alignItems={{ xs: "stretch", sm: "center" }} spacing={1} sx={{ mb: 2 }}>
         <Typography variant="h5">Nurse Dashboard</Typography>
         <Button variant="outlined" onClick={logout}>Logout</Button>
       </Stack>
 
       <Paper sx={{ p: 2, mb: 2 }}>
-        <Stack direction={{ xs: "column", sm: "row" }} spacing={2} alignItems="center">
-          <FormControl size="small" sx={{ minWidth: 180 }}>
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={2} alignItems={{ xs: "stretch", sm: "center" }}>
+          <FormControl size="small" sx={{ minWidth: { sm: 180 }, width: { xs: "100%", sm: "auto" } }}>
             <InputLabel>Status</InputLabel>
             <Select
               label="Status"
@@ -159,7 +159,7 @@ export default function NurseDashboard() {
             placeholder="Min 2 characters"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            sx={{ minWidth: 260 }}
+            sx={{ minWidth: { sm: 260 }, width: { xs: "100%", sm: "auto" } }}
           />
 
           <TextField
@@ -172,7 +172,7 @@ export default function NurseDashboard() {
               setTreatmentDate(e.target.value);
             }}
             InputLabelProps={{ shrink: true }}
-            sx={{ minWidth: 180 }}
+            sx={{ minWidth: { sm: 180 }, width: { xs: "100%", sm: "auto" } }}
           />
 
           <Button
@@ -184,7 +184,7 @@ export default function NurseDashboard() {
           </Button>
 
           {meta && (
-            <Typography variant="body2" sx={{ ml: "auto" }}>
+            <Typography variant="body2" sx={{ ml: { sm: "auto" } }}>
               Total: {meta.total} | Page: {meta.current_page}/{meta.last_page}
             </Typography>
           )}

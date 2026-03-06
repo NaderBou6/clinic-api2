@@ -946,14 +946,14 @@ export default function ReceptionistDashboard() {
 
         <Box sx={{ flex: 1, py: 3, px: { xs: 2, md: 3 } }}>
           <Container maxWidth="xl">
-            <Stack direction={{ xs: "column", lg: "row" }} spacing={2} alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
+            <Stack direction={{ xs: "column", lg: "row" }} spacing={2} alignItems={{ xs: "stretch", lg: "center" }} justifyContent="space-between" sx={{ mb: 2 }}>
               <Stack>
                 <Typography variant="h5" sx={{ color: "var(--ink)", fontWeight: 700 }}>{t.title}</Typography>
                 <Typography variant="body2" sx={{ color: "var(--muted)" }}>{t.todayCurrentNumber}: {queue.current_number || 0} | {t.totalWaiting}: {waitingCount}</Typography>
               </Stack>
-              <Stack direction={{ xs: "column", md: "row" }} spacing={1.2} alignItems="center">
-                <TextField size="small" placeholder="Search..." sx={{ minWidth: 220 }} />
-                <FormControl size="small" sx={{ minWidth: 130 }}>
+              <Stack direction={{ xs: "column", md: "row" }} spacing={1.2} alignItems={{ xs: "stretch", md: "center" }} sx={{ width: { xs: "100%", lg: "auto" } }}>
+                <TextField size="small" placeholder="Search..." sx={{ minWidth: { md: 220 }, width: { xs: "100%", md: "auto" } }} />
+                <FormControl size="small" sx={{ minWidth: { md: 130 }, width: { xs: "100%", md: "auto" } }}>
                   <InputLabel>{t.language}</InputLabel>
                   <Select label={t.language} value={lang} onChange={(e) => setLang(e.target.value)}>
                     <MenuItem value="fr">Français</MenuItem>
@@ -971,7 +971,7 @@ export default function ReceptionistDashboard() {
               </Stack>
             </Stack>
 
-            <Stack direction={{ xs: "column", md: "row" }} spacing={1} sx={{ mb: 2 }} justifyContent="flex-end">
+            <Stack direction={{ xs: "column", md: "row" }} spacing={1} sx={{ mb: 2, flexWrap: "wrap" }} justifyContent="flex-end">
               <Button variant="contained" sx={primaryActionSx(mode)} onClick={openCreate} startIcon={<AddIcon />}>
                 {t.newPatient}
               </Button>
@@ -1050,7 +1050,7 @@ export default function ReceptionistDashboard() {
               </Button>
             </Stack>
 
-            <Stack direction={{ xs: "column", md: "row" }} spacing={2} sx={{ mb: 2 }}>
+            <Stack direction={{ xs: "column", md: "row" }} spacing={2} sx={{ mb: 2, flexWrap: "wrap" }}>
               {[
                 {
                   label: t.queueDate,
@@ -1085,7 +1085,7 @@ export default function ReceptionistDashboard() {
                   key={card.label}
                   sx={{
                     flex: 1,
-                    minWidth: 220,
+                    minWidth: { xs: 0, sm: 220 },
                     p: 2.5,
                     borderRadius: 999,
                     border: "1px solid rgba(15,23,42,0.06)",
@@ -1128,7 +1128,7 @@ export default function ReceptionistDashboard() {
           boxShadow: isDark ? "0 18px 32px rgba(2,6,23,0.5)" : "0 18px 32px rgba(17,24,39,0.08)",
         }}
       >
-        <Stack direction={{ xs: "column", md: "row" }} spacing={{ xs: 2, md: 4 }} alignItems="center" justifyContent="space-between">
+        <Stack direction={{ xs: "column", md: "row" }} spacing={{ xs: 2, md: 4 }} alignItems={{ xs: "stretch", md: "center" }} justifyContent="space-between">
           <Stack>
             <Typography variant="subtitle2" sx={{ color: "var(--muted)" }}>{t.queueDate}</Typography>
             <Typography variant="h6" sx={{ color: "var(--ink)", fontWeight: 700 }}>{formatUiDate(queue.date || "", locale)}</Typography>
@@ -1143,7 +1143,7 @@ export default function ReceptionistDashboard() {
             <Typography variant="subtitle2" sx={{ color: "var(--muted)" }}>{t.totalWaiting}</Typography>
             <Typography variant="h6" sx={{ color: "var(--ink)", fontWeight: 700 }}>{queueLoading ? "..." : waitingCount}</Typography>
           </Stack>
-          <FormControl size="small" sx={{ minWidth: 180 }}>
+          <FormControl size="small" sx={{ minWidth: { md: 180 }, width: { xs: "100%", md: "auto" } }}>
             <InputLabel>{t.status}</InputLabel>
             <Select
               label={t.status}
@@ -1343,7 +1343,7 @@ export default function ReceptionistDashboard() {
                 <TextField label="Last name" size="small" fullWidth value={filters.last_name} onChange={setFilter("last_name")} />
                 <TextField label="Phone" size="small" fullWidth value={filters.phone} onChange={setFilter("phone")} />
 
-                <FormControl size="small" sx={{ minWidth: 160 }}>
+                <FormControl size="small" sx={{ minWidth: { md: 160 }, width: { xs: "100%", md: "auto" } }}>
                   <InputLabel>Gender</InputLabel>
                   <Select label="Gender" value={filters.gender} onChange={setFilter("gender")}>
                     <MenuItem value="">All</MenuItem>
@@ -1369,7 +1369,7 @@ export default function ReceptionistDashboard() {
                 <TextField label="Age min" type="number" size="small" fullWidth value={filters.age_min} onChange={setFilter("age_min")} />
                 <TextField label="Age max" type="number" size="small" fullWidth value={filters.age_max} onChange={setFilter("age_max")} />
 
-                <FormControl size="small" sx={{ minWidth: 180 }}>
+                <FormControl size="small" sx={{ minWidth: { md: 180 }, width: { xs: "100%", md: "auto" } }}>
                   <InputLabel>Sort by</InputLabel>
                   <Select
                     label="Sort by"
@@ -1385,7 +1385,7 @@ export default function ReceptionistDashboard() {
                   </Select>
                 </FormControl>
 
-                <FormControl size="small" sx={{ minWidth: 140 }}>
+                <FormControl size="small" sx={{ minWidth: { md: 140 }, width: { xs: "100%", md: "auto" } }}>
                   <InputLabel>Direction</InputLabel>
                   <Select
                     label="Direction"
@@ -1535,7 +1535,7 @@ export default function ReceptionistDashboard() {
                 </RadioGroup>
               </FormControl>
             )}
-            <Stack direction="row" spacing={2}>
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <TextField label="DOB" type="date" value={form.dob} onChange={setField("dob")} InputLabelProps={{ shrink: true }} fullWidth />
               <FormControl fullWidth>
                 <InputLabel>Gender</InputLabel>
@@ -1773,7 +1773,7 @@ export default function ReceptionistDashboard() {
                 <FormHelperText>{appointmentErrors.doctor_id[0]}</FormHelperText>
               )}
             </FormControl>
-            <Stack direction="row" spacing={2}>
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <TextField
                 label="Date"
                 type="date"
