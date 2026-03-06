@@ -33,7 +33,7 @@ export default function Login() {
 
   return (
     <Stack alignItems="center" justifyContent="center" sx={{ minHeight: "100vh", p: 2 }}>
-      <Card sx={{ width: 420 }}>
+      <Card sx={{ width: "100%", maxWidth: 420 }}>
         <CardContent>
           <Typography variant="h5" gutterBottom>Clinic Login</Typography>
 

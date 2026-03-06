@@ -1323,7 +1323,7 @@ export default function DoctorDashboard() {
 
         <Box sx={{ flex: 1, p: { xs: 2, md: 3 } }}>
           <Container sx={{ py: 3, width: "100%" }} maxWidth={false} disableGutters>
-      <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems="center" sx={{ mb: 3 }}>
+      <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems={{ xs: "stretch", md: "center" }} sx={{ mb: 3 }}>
         <Stack sx={{ flex: 1 }}>
           <Typography variant="h5" sx={{ color: "var(--ink)", fontWeight: 700 }}>
             Doctor Dashboard
@@ -1332,14 +1332,15 @@ export default function DoctorDashboard() {
             Current: {queue.current_number || "—"} | Waiting: {waitingCount}
           </Typography>
         </Stack>
-        <Stack direction="row" spacing={1} alignItems="center">
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={1} alignItems={{ xs: "stretch", sm: "center" }}>
           <TextField
             size="small"
             placeholder="Search..."
             sx={{
               background: "#fff",
               borderRadius: 2,
-              minWidth: 220,
+              minWidth: { sm: 220 },
+              width: { xs: "100%", sm: "auto" },
             }}
           />
           <Stack alignItems="flex-end">
@@ -1353,11 +1354,11 @@ export default function DoctorDashboard() {
         </Stack>
       </Stack>
 
-      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
+      <Stack direction={{ xs: "column", sm: "row" }} justifyContent="space-between" alignItems={{ xs: "stretch", sm: "center" }} spacing={1} sx={{ mb: 2 }}>
         <Stack>
           
         </Stack>
-        <Stack direction="row" spacing={1}>
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
           <Button
             variant="contained"
             startIcon={<SkipNextIcon />}
@@ -1505,7 +1506,7 @@ export default function DoctorDashboard() {
       {(!moduleFocus || moduleFocus === "queue") && (
         <>
       <Paper sx={{ p: 2, mb: 2 }}>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems="center">
+        <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems={{ xs: "stretch", md: "center" }}>
           <Box sx={{ flex: 1 }}>
             <Typography variant="subtitle2" sx={{ opacity: 0.7 }}>Queue date</Typography>
             <Typography variant="h6">{queue.date || "-"}</Typography>
@@ -1517,7 +1518,7 @@ export default function DoctorDashboard() {
             </Typography>
           </Box>
           <Box sx={{ flex: 1, textAlign: { xs: "left", md: "right" } }}>
-            <FormControl size="small" sx={{ minWidth: 160 }}>
+            <FormControl size="small" sx={{ minWidth: { md: 160 }, width: { xs: "100%", md: "auto" } }}>
               <InputLabel>Status</InputLabel>
               <Select
                 label="Status"
@@ -1836,12 +1837,12 @@ export default function DoctorDashboard() {
           boxShadow: "0 14px 28px rgba(15,23,42,0.12)",
         }}
       >
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems="center" justifyContent="space-between">
+        <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems={{ xs: "stretch", md: "center" }} justifyContent="space-between">
           <Typography variant="subtitle1" sx={{ fontWeight: 700, letterSpacing: 0.2 }}>
             Statistics
           </Typography>
-          <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems="center">
-            <FormControl size="small" sx={{ minWidth: 160 }}>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems={{ xs: "stretch", md: "center" }}>
+            <FormControl size="small" sx={{ minWidth: { md: 160 }, width: { xs: "100%", md: "auto" } }}>
               <InputLabel>Period</InputLabel>
               <Select
                 label="Period"
@@ -1876,7 +1877,7 @@ export default function DoctorDashboard() {
               </>
             )}
             {(role === "doctor-manager" || role === "admin") && (
-              <FormControl size="small" sx={{ minWidth: 180 }}>
+              <FormControl size="small" sx={{ minWidth: { md: 180 }, width: { xs: "100%", md: "auto" } }}>
                 <InputLabel>Doctor</InputLabel>
                 <Select
                   label="Doctor"
@@ -2171,7 +2172,7 @@ export default function DoctorDashboard() {
                         {statsData?.metrics ? (statsData.metrics.billed_total_cents / 100).toFixed(2) : "-"}
                       </Typography>
                     </Box>
-                    <Stack direction="row" spacing={2}>
+                    <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
                       <Box
                         sx={{
                           flex: 1,
@@ -2216,7 +2217,7 @@ export default function DoctorDashboard() {
           {patientsError && <Alert severity="error" sx={{ mt: 2 }}>{patientsError}</Alert>}
 
           <Paper sx={{ p: 2, mb: 2, mt: 2 }}>
-            <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems="center" justifyContent="space-between">
+            <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems={{ xs: "stretch", md: "center" }} justifyContent="space-between">
               <Typography variant="subtitle1">Patients list</Typography>
               <Button variant="contained" startIcon={<AddIcon />} onClick={openPatientCreate}>
                 New Patient
@@ -2258,7 +2259,7 @@ export default function DoctorDashboard() {
                 <TextField label="Last name" size="small" fullWidth value={patientsFilters.last_name} onChange={setPatientFilter("last_name")} />
                 <TextField label="Phone" size="small" fullWidth value={patientsFilters.phone} onChange={setPatientFilter("phone")} />
 
-                <FormControl size="small" sx={{ minWidth: 160 }}>
+                <FormControl size="small" sx={{ minWidth: { md: 160 }, width: { xs: "100%", md: "auto" } }}>
                   <InputLabel>Gender</InputLabel>
                   <Select label="Gender" value={patientsFilters.gender} onChange={setPatientFilter("gender")}>
                     <MenuItem value="">All</MenuItem>
@@ -2284,7 +2285,7 @@ export default function DoctorDashboard() {
                 <TextField label="Age min" type="number" size="small" fullWidth value={patientsFilters.age_min} onChange={setPatientFilter("age_min")} />
                 <TextField label="Age max" type="number" size="small" fullWidth value={patientsFilters.age_max} onChange={setPatientFilter("age_max")} />
 
-                <FormControl size="small" sx={{ minWidth: 180 }}>
+                <FormControl size="small" sx={{ minWidth: { md: 180 }, width: { xs: "100%", md: "auto" } }}>
                   <InputLabel>Sort by</InputLabel>
                   <Select
                     label="Sort by"
@@ -2300,7 +2301,7 @@ export default function DoctorDashboard() {
                   </Select>
                 </FormControl>
 
-                <FormControl size="small" sx={{ minWidth: 140 }}>
+                <FormControl size="small" sx={{ minWidth: { md: 140 }, width: { xs: "100%", md: "auto" } }}>
                   <InputLabel>Direction</InputLabel>
                   <Select
                     label="Direction"
@@ -2313,7 +2314,7 @@ export default function DoctorDashboard() {
                 </FormControl>
               </Stack>
 
-              <Stack direction="row" spacing={1}>
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
                 <Button
                   variant="outlined"
                   onClick={() => {
@@ -2414,7 +2415,7 @@ export default function DoctorDashboard() {
       )}
 
       <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <Box sx={{ width: 420, p: 2 }}>
+        <Box sx={{ width: { xs: "88vw", sm: 420 }, maxWidth: "100vw", p: 2 }}>
           <Typography variant="h6">Consultation Modules</Typography>
           <Divider sx={{ my: 2 }} />
 
@@ -2452,7 +2453,7 @@ export default function DoctorDashboard() {
                           setPrescriptionItems(next);
                         }}
                       />
-                      <Stack direction="row" spacing={1}>
+                      <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
                         <TextField
                           label="Dosage"
                           size="small"
@@ -2476,7 +2477,7 @@ export default function DoctorDashboard() {
                           fullWidth
                         />
                       </Stack>
-                      <Stack direction="row" spacing={1}>
+                      <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
                         <TextField
                           label="Duration"
                           size="small"
@@ -2502,7 +2503,7 @@ export default function DoctorDashboard() {
                       </Stack>
                     </Stack>
                   ))}
-                  <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+                  <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ mb: 2 }}>
                     <Button size="small" onClick={() => setPrescriptionItems((s) => [...s, emptyPrescriptionItem()])}>
                       Add item
                     </Button>
@@ -2533,7 +2534,7 @@ export default function DoctorDashboard() {
                       value={certificate.reason}
                       onChange={(e) => setCertificate((s) => ({ ...s, reason: e.target.value }))}
                     />
-                    <Stack direction="row" spacing={1}>
+                    <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
                       <TextField
                         label="Start"
                         type="date"
@@ -2561,7 +2562,7 @@ export default function DoctorDashboard() {
                       multiline
                       minRows={2}
                     />
-                    <Stack direction="row" spacing={1}>
+                    <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
                       <Button size="small" variant="contained" onClick={saveCertificate} disabled={moduleLoading}>
                         Save certificate
                       </Button>
@@ -2607,7 +2608,7 @@ export default function DoctorDashboard() {
                       />
                     </Stack>
                   ))}
-                  <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+                  <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ mb: 2 }}>
                     <Button size="small" onClick={() => setTestItems((s) => [...s, emptyTestItem()])}>
                       Add item
                     </Button>
@@ -2696,7 +2697,7 @@ export default function DoctorDashboard() {
             <TextField label="Phone" value={patientForm.phone} onChange={setPatientField("phone")}
               error={!!patientFormErrors.phone} helperText={patientFormErrors.phone?.[0]} fullWidth
             />
-            <Stack direction="row" spacing={2}>
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <TextField label="DOB" type="date" value={patientForm.dob} onChange={setPatientField("dob")} InputLabelProps={{ shrink: true }} fullWidth />
               <FormControl fullWidth>
                 <InputLabel>Gender</InputLabel>

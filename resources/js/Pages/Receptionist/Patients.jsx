@@ -244,10 +244,16 @@ export default function ReceptionistPatients() {
 
   return (
     <Container sx={{ py: 4 }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        justifyContent="space-between"
+        alignItems={{ xs: "stretch", sm: "center" }}
+        spacing={1.5}
+        sx={{ mb: 2 }}
+      >
         <Typography variant="h5" color="primary">Patients</Typography>
 
-        <Stack direction="row" spacing={1}>
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
           <Button variant="contained" startIcon={<AddIcon />} onClick={openCreate}>
             New Patient
           </Button>
@@ -331,7 +337,7 @@ export default function ReceptionistPatients() {
 
       {/* Drawer Filters */}
       <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
-        <Stack sx={{ width: 380, p: 2 }} spacing={2}>
+        <Stack sx={{ width: { xs: "85vw", sm: 380 }, maxWidth: "100vw", p: 2 }} spacing={2}>
           <Typography variant="h6">Filters</Typography>
           <Divider />
 
@@ -349,7 +355,7 @@ export default function ReceptionistPatients() {
           </FormControl>
 
           <Typography variant="subtitle2">Created at</Typography>
-          <Stack direction="row" spacing={1}>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
             <TextField label="From" type="date" size="small" fullWidth InputLabelProps={{ shrink: true }}
               value={draft.created_from} onChange={(e)=>setDraft(s=>({...s, created_from:e.target.value}))}
             />
@@ -358,7 +364,7 @@ export default function ReceptionistPatients() {
             />
           </Stack>
 
-          <Stack direction="row" spacing={1}>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
             <Button variant="contained" fullWidth onClick={applyFilters}>Apply</Button>
             <Button variant="outlined" fullWidth onClick={resetFilters}>Reset</Button>
           </Stack>
@@ -397,7 +403,7 @@ export default function ReceptionistPatients() {
               fullWidth
             />
 
-            <Stack direction="row" spacing={2}>
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <TextField
                 label="DOB"
                 type="date"
@@ -416,7 +422,7 @@ export default function ReceptionistPatients() {
               </FormControl>
             </Stack>
             <Typography variant="subtitle2">DOB (Date of birth)</Typography>
-<Stack direction="row" spacing={1}>
+<Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
   <TextField
     label="DOB exact"
     type="date"
@@ -428,7 +434,7 @@ export default function ReceptionistPatients() {
   />
 </Stack>
 
-<Stack direction="row" spacing={1}>
+<Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
   <TextField
     label="DOB from"
     type="date"
@@ -450,7 +456,7 @@ export default function ReceptionistPatients() {
 </Stack>
 
 <Typography variant="subtitle2">Age</Typography>
-<Stack direction="row" spacing={1}>
+<Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
   <TextField
     label="Age exact"
     type="number"
@@ -461,7 +467,7 @@ export default function ReceptionistPatients() {
   />
 </Stack>
 
-<Stack direction="row" spacing={1}>
+<Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
   <TextField
     label="Age min"
     type="number"
